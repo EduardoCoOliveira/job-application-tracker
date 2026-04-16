@@ -140,3 +140,8 @@ Motivo:
 - futuramente precisa versionar `apps/svelte-dashboard`
 
 Nao usar o app Angular isolado como unico repositorio, pois isso deixa documentacao e backend fora do Git.
+
+Remote atual:
+
+- `origin`: `https://github.com/EduardoCoOliveira/job-application-tracker.git`
+- branch principal: `main`

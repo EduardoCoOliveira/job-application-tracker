@@ -30,3 +30,5 @@
 - Removido o `.git` aninhado do app Angular e inicializado Git na raiz `Job Application Tracker` com branch `main`.
 - Criado `.gitignore` raiz para ignorar dependencias, caches, outputs de build, arquivos locais e backup de metadados Git antigos.
 - GitHub CLI (`gh`) nao esta instalado; criacao/publicacao do repositorio remoto precisa ser feita por outro metodo.
+- Remote GitHub configurado: `https://github.com/EduardoCoOliveira/job-application-tracker.git`.
+- Branch `main` enviada para `origin/main`.
