@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro de candidatura</title>
+    <link rel="stylesheet" href="./reference.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">JAT</div>
+          <div class="brand-copy">
+            <strong>Job Application Tracker</strong>
+            <span>Referencia visual</span>
+          </div>
+        </div>
+
+        <nav class="nav-group">
+          <a class="nav-link" href="./index.html">Visao geral</a>
+          <a class="nav-link" href="./candidaturas.html">Lista de candidaturas</a>
+          <a class="nav-link active" href="./cadastro.html">Cadastro</a>
+          <a class="nav-link" href="./detalhes.html">Detalhes</a>
+        </nav>
+
+        <div class="sidebar-note">
+          <p class="eyebrow">Diretriz</p>
+          <p class="muted">
+            Formulario simples, com grupos visuais claros e uma coluna lateral
+            mostrando preview e checklist.
+          </p>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Tela de entrada</p>
+            <h1 class="page-title">Nova candidatura</h1>
+            <p>Formulario enxuto para registrar a vaga e o ponto atual do processo.</p>
+          </div>
+          <div class="topbar-actions">
+            <a class="button ghost" href="./candidaturas.html">Cancelar</a>
+            <a class="button primary" href="./candidaturas.html">Salvar rascunho</a>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="form-layout">
+            <div class="form-section">
+              <div class="panel-header">
+                <h2 class="section-title">Informacoes principais</h2>
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>Empresa</label>
+                  <input type="text" placeholder="Ex: Ollama Labs" />
+                </div>
+                <div class="field">
+                  <label>Cargo</label>
+                  <input type="text" placeholder="Ex: Front-end Intern" />
+                </div>
+                <div class="field">
+                  <label>Status</label>
+                  <select>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                    <option>Offer</option>
+                    <option>Rejected</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Modelo</label>
+                  <select>
+                    <option>Remoto</option>
+                    <option>Hibrido</option>
+                    <option>Presencial</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label>Link da vaga</label>
+                  <input type="text" placeholder="https://empresa.com/vaga" />
+                </div>
+                <div class="field full">
+                  <label>Observacoes</label>
+                  <textarea placeholder="Resumo da vaga, stack pedida, como voce aplicou e o que precisa fazer depois."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-stack">
+              <div class="preview-card">
+                <p class="eyebrow">Preview do card</p>
+                <h3>Front-end Intern</h3>
+                <p class="muted">Ollama Labs</p>
+                <div class="spacer-top">
+                  <span class="status-pill interview">Interview</span>
+                </div>
+                <ul class="mini-list spacer-top">
+                  <li>Remoto</li>
+                  <li>Atualizado hoje</li>
+                  <li>Proxima acao: preparar portfolio</li>
+                </ul>
+              </div>
+
+              <div class="preview-card">
+                <p class="eyebrow">Checklist visual</p>
+                <ul class="mini-list">
+                  <li>Empresa preenchida</li>
+                  <li>Cargo preenchido</li>
+                  <li>Status definido</li>
+                  <li>Observacoes iniciais</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

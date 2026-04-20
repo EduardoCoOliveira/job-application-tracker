@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista de candidaturas</title>
+    <link rel="stylesheet" href="./reference.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">JAT</div>
+          <div class="brand-copy">
+            <strong>Job Application Tracker</strong>
+            <span>Referencia visual</span>
+          </div>
+        </div>
+
+        <nav class="nav-group">
+          <a class="nav-link" href="./index.html">Visao geral</a>
+          <a class="nav-link active" href="./candidaturas.html">Lista de candidaturas</a>
+          <a class="nav-link" href="./cadastro.html">Cadastro</a>
+          <a class="nav-link" href="./detalhes.html">Detalhes</a>
+        </nav>
+
+        <div class="sidebar-note">
+          <p class="eyebrow">Estrutura</p>
+          <ul class="mini-list">
+            <li>Sidebar fixa</li>
+            <li>Header com CTA</li>
+            <li>Resumo em cards</li>
+            <li>Tabela principal</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Tela principal</p>
+            <h1 class="page-title">Candidaturas</h1>
+            <p>Visao limpa para acompanhar vagas, empresa, etapa e proxima acao.</p>
+          </div>
+          <div class="topbar-actions">
+            <a class="button ghost" href="./detalhes.html">Ver detalhe</a>
+            <a class="button primary" href="./cadastro.html">Nova candidatura</a>
+          </div>
+        </section>
+
+        <section class="hero">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="muted">Em andamento</span>
+              <strong>12</strong>
+            </div>
+            <div class="stat-card">
+              <span class="muted">Entrevistas</span>
+              <strong>3</strong>
+            </div>
+            <div class="stat-card">
+              <span class="muted">Respostas esta semana</span>
+              <strong>5</strong>
+            </div>
+            <div class="stat-card">
+              <span class="muted">Proxima acao hoje</span>
+              <strong>2</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2 class="section-title">Filtro visual</h2>
+            <div class="chip-row">
+              <span class="chip active">Todos</span>
+              <span class="chip">Applied</span>
+              <span class="chip">Interview</span>
+              <span class="chip">Offer</span>
+              <span class="chip">Rejected</span>
+            </div>
+          </div>
+
+          <div class="table-shell">
+            <div class="table-head">
+              <span>Empresa e vaga</span>
+              <span>Status</span>
+              <span>Atualizado</span>
+              <span>Proxima acao</span>
+              <span></span>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <strong>Front-end Intern</strong>
+                <div class="table-meta">Ollama Labs</div>
+              </div>
+              <span class="status-pill interview">Interview</span>
+              <span>16 Abr</span>
+              <span>Revisar portfolio</span>
+              <a class="button ghost" href="./detalhes.html">Detalhes</a>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <strong>Web Developer Trainee</strong>
+                <div class="table-meta">Studio Norte</div>
+              </div>
+              <span class="status-pill applied">Applied</span>
+              <span>15 Abr</span>
+              <span>Enviar follow-up</span>
+              <a class="button ghost" href="./detalhes.html">Detalhes</a>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <strong>Angular Intern</strong>
+                <div class="table-meta">Atlas Tech</div>
+              </div>
+              <span class="status-pill offer">Offer</span>
+              <span>14 Abr</span>
+              <span>Analisar proposta</span>
+              <a class="button ghost" href="./detalhes.html">Detalhes</a>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <strong>Junior UI Developer</strong>
+                <div class="table-meta">Vento Digital</div>
+              </div>
+              <span class="status-pill rejected">Rejected</span>
+              <span>11 Abr</span>
+              <span>Arquivar</span>
+              <a class="button ghost" href="./detalhes.html">Detalhes</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

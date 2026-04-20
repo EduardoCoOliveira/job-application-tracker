@@ -1,1 +1,16 @@
-<p>applications works!</p>
+
+    <section>
+        <title>Minhas Candidaturas</title>
+        <h1>Acompanhe cada processo, atualize status e encontre rápido as vagas que ainda precisam da sua atenção.</h1>
+        @for (application of applications; track application.id) {
+            <article>
+                <h2>{{application.company}}</h2>
+                <p>Cargo:{{application.position}}</p>
+                <p>Status: {{application.status}}</p>
+                <p>Modalidade: {{application.modality}}</p>
+                <p>Próxima ação: {{application.nextAction}}</p>
+                <p>Atualizado em: {{application.updatedAt}}</p>
+            </article>
+        }
+    </section>
+

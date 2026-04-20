@@ -1,49 +1,48 @@
 # Next Step
 
-## Objetivo
+## Goal
 
-Fazer a pagina **Applications** exibir uma lista mockada de candidaturas usando Angular.
+Turn the current raw applications list into the first real page of the product, visually inspired by the reference file:
 
-O objetivo tecnico e praticar o fluxo:
+- `src/templates/candidaturas.html`
 
-```text
-Component -> Service -> Model -> Template
-```
+## Exact Task
 
-## Tarefas
+Rebuild `src/app/components/applications/applications.html` and `applications.css` so the Angular page keeps using real mock data but starts to look like the intended final interface.
 
-1. Abrir `src/app/models/application.model.ts`.
-2. Definir uma interface TypeScript para representar uma candidatura.
-3. Abrir `src/app/services/application.service.ts`.
-4. Criar uma lista mockada privada com 3 ou 4 candidaturas.
-5. Criar um metodo publico `getApplications()` no service.
-6. Abrir o componente `Applications`.
-7. Injetar o `ApplicationService` no componente.
-8. Criar uma propriedade para guardar as candidaturas.
-9. Exibir as candidaturas no template `applications.html` usando `@for`.
+## What To Do Next
 
-## Conceitos para pesquisar
+1. Open the reference page `src/templates/candidaturas.html`.
+2. Identify the main visual blocks:
+   - top header / page intro
+   - actions area
+   - filters/search area if present
+   - applications list/cards/table
+3. Rewrite the Angular component template so it contains only component markup.
+   - Do not use full-document tags like `html`, `head` or `body` inside the component template.
+4. Keep the `@for` loop, but place it inside the real visual structure.
+5. Create the base CSS for spacing, typography, cards and layout.
+6. Compare the Angular page in the browser with the reference and adjust structure first, details second.
 
-- Angular dependency injection com `inject()`.
-- Angular control flow com `@for`.
-- TypeScript `interface`.
-- Diferenca entre component, service e model.
+## Technical Focus
 
-## Regras
+This step is mainly about learning:
 
-- Nao conectar com API ainda.
-- Nao criar backend ainda.
-- Nao usar PostgreSQL ainda.
-- Usar dados mockados por enquanto.
-- Manter o foco em Angular e TypeScript.
+- component template structure in Angular
+- how to mix static layout with dynamic rendering
+- how to keep visual reference and real implementation separate
+- how to move from “working data” to “working UI”
 
-## Ao finalizar
+## Rules
 
-Enviar para revisao:
+- Keep using mock data.
+- Do not connect to backend yet.
+- Do not move app logic into `src/templates`.
+- Prioritize structure and CSS over advanced logic.
+- Fidelity to the reference matters more than adding new features right now.
 
-- `application.model.ts`
-- `application.service.ts`
-- `applications.ts`
-- `applications.html`
+## Files For Review In The Next Session
 
-O mentor deve revisar se a estrutura esta correta, se o TypeScript esta bem usado e se o fluxo Angular esta claro.
+- `src/app/components/applications/applications.html`
+- `src/app/components/applications/applications.css`
+- optionally `src/app/components/applications/applications.ts` if any support property is added

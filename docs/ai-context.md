@@ -1,147 +1,233 @@
 # AI Context
 
-## Objetivo do projeto
+## Project
 
-O projeto **Job Application Tracker** e uma aplicacao full-stack para gerenciar candidaturas de estagio/junior.
+**Job Application Tracker** is a portfolio-grade full-stack application for tracking internship/junior job applications.
 
-O sistema deve permitir acompanhar vagas, empresas, status do processo seletivo, proximas acoes, detalhes da candidatura e metricas do funil.
+Core product goals:
 
-O projeto tambem funciona como trilha de aprendizado pratica para consolidar:
+- register applications
+- track status changes through the hiring funnel
+- store next actions and recent updates
+- visualize the process through multiple frontends
 
-- HTML
-- CSS
-- JavaScript
+Learning goals tied to the project:
+
+- HTML, CSS, JavaScript
 - TypeScript
 - Angular
 - Svelte
-- Node.js
-- Express
-- PostgreSQL
-- SQL
-- Java
-- Spring Boot
+- Node.js + Express
+- PostgreSQL + SQL
+- Java + Spring Boot
 
-## Processo de aprendizado
+## Working Protocol
 
-O fluxo de trabalho e hibrido entre GPT e um modelo local via Continue/Qwen.
+This project must be portable across **PC/Windows** and **Mac/macOS** without depending on chat history.
 
-Regras do fluxo:
+Mandatory repository context files:
 
-- GPT atua como mentor tecnico e guia do processo.
-- GPT deve iniciar cada etapa dando um norte claro, sem entregar codigo completo cedo demais.
-- O usuario tenta implementar sozinho.
-- Se travar, GPT aprofunda a explicacao com dicas mais especificas.
-- Se ainda assim travar, GPT fornece um prompt claro para enviar ao Qwen.
-- O usuario volta com o codigo gerado ou implementado.
-- GPT revisa, explica se funciona e sugere melhorias.
+- `docs/ai-context.md`
+- `docs/session-log.md`
+- `docs/next-step.md`
+- `docs/decisions.md`
 
-## Protocolo de sessoes PC/Mac
+Session rules:
 
-Ao iniciar uma nova sessao de programacao, GPT deve lembrar o usuario de informar em qual plataforma esta trabalhando:
+- At the start of a session, confirm the environment:
+  - `PC/Windows`
+  - `Mac/macOS`
+- Also confirm the working mode:
+  - `didactic`
+  - `hybrid`
+  - `executor`
+- At the end of a session, update all four docs before committing.
 
-- PC/Windows
-- Mac/macOS
+## Learning Flow
 
-Ao finalizar uma sessao de programacao, GPT deve:
+The mentoring flow is intentionally gradual:
 
-- revisar o que foi alterado
-- atualizar `docs/ai-context.md` quando houver mudanca de estado relevante
-- atualizar `docs/session-log.md` com um resumo curto da sessao
-- atualizar `docs/next-step.md` com a proxima acao concreta
-- verificar o estado do Git
-- preparar commit das mudancas quando o usuario confirmar que a sessao acabou
+1. GPT gives the next technical direction without dumping the full solution too early.
+2. The user implements alone when possible.
+3. If needed, GPT gives a more detailed explanation.
+4. If still needed and the user is on PC, GPT may prepare a prompt for Qwen via Continue.
+5. GPT reviews the resulting code and explains why it works and what can improve.
 
-O objetivo e permitir continuar o projeto em outra maquina sem depender do historico da conversa.
+The user requested especially didactic guidance:
 
-## Arquitetura planejada
+- explain why a file exists before asking for changes
+- explain syntax, concepts, and responsibility of each file
+- make each “north” more specific when requested
 
-A arquitetura principal sera:
+## Planned Architecture
 
-- Angular como frontend principal.
-- Svelte como dashboard complementar e reativo.
-- Node.js + Express como API principal.
-- PostgreSQL como banco de dados principal.
-- SQL como estudo aplicado sobre filtros e metricas.
-- Java + Spring Boot como backend complementar de estudo.
+Main architecture:
 
-O Spring Boot nao e backend principal da primeira entrega. Ele sera usado depois para comparar arquitetura Java com Express.
+- **Angular**: primary application UI
+- **Svelte**: secondary reactive dashboard / comparative frontend
+- **Node.js + Express**: main backend API
+- **PostgreSQL**: main relational database
+- **SQL scripts**: query practice for filtering and analytics
+- **Java + Spring Boot**: secondary study backend for architectural comparison
 
-## Estado atual
+Important architectural decision:
 
-Ja existe documentacao inicial em:
+- Spring Boot is **not** the critical path for the first delivery.
+- The first working product path is **Angular -> Node/Express -> PostgreSQL**.
+
+## Current Implementation State
+
+### Repository
+
+The root folder `Job Application Tracker` is the Git repository.
+
+This is intentional so the repo versions:
+
+- documentation
+- Angular app
+- future Svelte app
+- backend folders
+- database scripts
+
+Remote:
+
+- `origin`: `https://github.com/EduardoCoOliveira/job-application-tracker.git`
+- main branch: `main`
+
+### Documentation
+
+Present in the repo:
 
 - `README.md`
 - `docs/architecture.md`
 - `docs/study-roadmap.md`
+- `docs/ai-context.md`
+- `docs/session-log.md`
+- `docs/next-step.md`
+- `docs/decisions.md`
 
-Ja existem pastas planejadas para:
+### Angular App
 
-- `apps/angular-app`
-- `backend/api`
-- `backend/java-api-study`
-- `database/queries`
-
-O projeto Angular foi iniciado em:
+Angular app location:
 
 - `apps/angular-app/job-application-tracker`
 
-No Angular, ja foram criadas tres paginas/rotas:
+Current Angular state:
 
-- candidaturas
-- cadastro
-- detalhes
+- app exists and runs locally
+- routing is configured
+- three routes/pages exist:
+  - `''` -> applications list
+  - `'register'` -> register page
+  - `'details'` -> details page
+- standalone app structure is being used
+- root app imports `RouterOutlet`
+- current unit test checks app creation and `router-outlet`
 
-Tambem ja foram criados arquivos de service e model pelo usuario, mas o conteudo ainda precisa ser revisado.
+### Angular Domain Layer
 
-## Decisoes tecnicas tomadas
+Current model file:
 
-- Usar CSS em vez de SCSS no Angular para praticar CSS moderno diretamente.
-- Nao usar SSR/SSG no inicio, pois o projeto e mais parecido com dashboard/app interna.
-- Usar PostgreSQL em vez de Supabase para praticar backend e banco relacional real.
-- Usar Node/Express como API principal para manter velocidade de entrega.
-- Usar Java/Spring Boot como estudo complementar, nao como caminho critico.
-- Comecar com dados mockados no Angular antes de criar API real.
+- `src/app/models/application.model.ts`
 
-## O que falta
+Implemented:
 
-- Revisar `application.model.ts`.
-- Revisar `application.service.ts`.
-- Criar dados mockados no service.
-- Renderizar a lista de candidaturas no componente `Applications`.
-- Implementar formulario em `Register`.
-- Implementar detalhes em `Details`.
-- Criar API Node/Express.
-- Modelar PostgreSQL.
-- Escrever queries SQL.
-- Criar dashboard Svelte.
-- Criar API complementar em Spring Boot.
+- `ApplicationStatus` type
+- `ModalityStatus` type
+- `JobApplication` interface
 
-## Prioridade atual
+Current `JobApplication` shape:
 
-A prioridade atual e consolidar o fluxo Angular:
+- `id`
+- `company`
+- `position`
+- `status`
+- `modality`
+- `nextAction`
+- `updatedAt`
 
-```text
-Component -> Service -> Model -> Template
-```
+Status/modality values are kept in **English** internally to avoid encoding issues and keep code values stable.
 
-O proximo passo concreto esta em `docs/next-step.md`.
+### Angular Service Layer
 
-## Estrategia Git
+Current service file:
 
-O repositorio correto deve ser a raiz `Job Application Tracker`.
+- `src/app/services/application.service.ts`
 
-Motivo:
+Implemented:
 
-- precisa versionar `README.md`
-- precisa versionar `docs/`
-- precisa versionar `database/`
-- precisa versionar `backend/`
-- precisa versionar `apps/angular-app`
-- futuramente precisa versionar `apps/svelte-dashboard`
+- service with mock data
+- mock list with four applications
+- public method returning `Observable<JobApplication[]>`
 
-Nao usar o app Angular isolado como unico repositorio, pois isso deixa documentacao e backend fora do Git.
+The app is still using **mock data**, not HTTP/API yet.
 
-Remote atual:
+### Angular Applications Page
 
-- `origin`: `https://github.com/EduardoCoOliveira/job-application-tracker.git`
-- branch principal: `main`
+Current component files:
+
+- `src/app/components/applications/applications.ts`
+- `src/app/components/applications/applications.html`
+
+Implemented:
+
+- component property `applications: JobApplication[] = []`
+- service injection through constructor
+- `ngOnInit()` subscription to load mock data
+- template loop with Angular `@for`
+- applications are already rendering in the browser
+
+Current limitation:
+
+- the page is still mostly raw/unpolished
+- rendering is functional, but the final visual structure still needs to be recreated based on the reference template
+
+### Visual Reference
+
+There is a static visual reference under:
+
+- `apps/angular-app/job-application-tracker/src/templates`
+
+Purpose:
+
+- visual inspiration only
+- not part of the real Angular feature flow
+- can be served through Angular assets
+
+Current reference pages:
+
+- `index.html`
+- `candidaturas.html`
+- `cadastro.html`
+- `detalhes.html`
+- `reference.css`
+
+From this point on, the user wants the real app to be rebuilt **as close as possible** to the visual reference, while gradually adding real functionality.
+
+## Open Work
+
+Frontend next:
+
+- transform the raw applications page into the real layout inspired by `candidaturas.html`
+- remove any leftover full-document HTML structure from component templates if still present
+- add proper CSS and page structure
+- then build `register`
+- then build `details`
+
+Backend later:
+
+- create Node/Express API
+- connect Angular with `HttpClient`
+- model PostgreSQL schema
+- write SQL filters and analytics queries
+- add Svelte dashboard
+- build Java/Spring study API
+
+## Known Constraints / Notes
+
+- The user prefers CSS instead of SCSS.
+- SSR/SSG is intentionally out of scope for now.
+- Mock data first, real API later.
+- Visual reference must remain separate from production logic.
+- Internal code values should prefer ASCII-safe English identifiers when encoding becomes an issue.
+- The user wants future support for customizable per-company statuses, but this is a later feature, not current scope.

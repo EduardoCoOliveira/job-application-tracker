@@ -2,33 +2,53 @@
 
 ## 2026-04-14
 
-- Definido o projeto **Job Application Tracker**.
-- Definida a estrategia com Angular como app principal e Svelte como dashboard complementar.
-- Supabase foi considerado, mas a decisao mudou para PostgreSQL + API propria.
-- Definido Node.js + Express como backend principal.
-- Definido Java/Spring Boot como trilha complementar de estudo.
-- Criada organizacao inicial do repositorio.
-- Atualizados `README.md`, `docs/architecture.md` e `docs/study-roadmap.md`.
+- Defined the **Job Application Tracker** project.
+- Chose Angular as the main frontend and Svelte as the secondary dashboard frontend.
+- Replaced the original Supabase idea with PostgreSQL plus a custom API.
+- Chose Node.js + Express as the main backend path.
+- Added Java/Spring Boot as a complementary study track.
+- Created the initial repository structure and updated core planning docs.
 
 ## 2026-04-15
 
-- Escolhido CSS como stylesheet do Angular.
-- Decidido nao usar SSR/SSG no inicio.
-- Criadas rotas Angular para candidaturas, cadastro e detalhes.
-- Identificados erros em `app.routes.ts`: imports, virgulas e import ausente de `Details`.
-- Orientado o uso de `components`, `services` e `models`.
-- Usuario criou arquivos de service e model.
-- Definido proximo passo: renderizar lista mockada de candidaturas com Angular.
-- Definido fluxo hibrido GPT + Qwen via Continue.
-- Criados documentos obrigatorios de continuidade:
+- Chose CSS instead of SCSS for Angular.
+- Decided not to use SSR/SSG in the initial version.
+- Created Angular routes for applications, register and details.
+- Fixed route/import issues in `app.routes.ts`.
+- Defined the hybrid mentoring flow with GPT + Qwen.
+- Created repository continuity docs:
   - `docs/ai-context.md`
   - `docs/session-log.md`
   - `docs/next-step.md`
-- Definido protocolo PC/Mac: no inicio de cada sessao, informar plataforma; no fim, atualizar docs e preparar commit.
-- Verificado Git: a raiz `Job Application Tracker` ainda nao e repositorio Git; existe `.git` apenas em `apps/angular-app/job-application-tracker`, sem remote configurado.
-- Iniciada correcao da estrategia Git: a raiz do projeto deve ser o repositorio principal para incluir docs, backend, database e apps.
-- Removido o `.git` aninhado do app Angular e inicializado Git na raiz `Job Application Tracker` com branch `main`.
-- Criado `.gitignore` raiz para ignorar dependencias, caches, outputs de build, arquivos locais e backup de metadados Git antigos.
-- GitHub CLI (`gh`) nao esta instalado; criacao/publicacao do repositorio remoto precisa ser feita por outro metodo.
-- Remote GitHub configurado: `https://github.com/EduardoCoOliveira/job-application-tracker.git`.
-- Branch `main` enviada para `origin/main`.
+- Reorganized Git so the repository root is `Job Application Tracker`.
+- Configured remote GitHub repository and pushed `main`.
+
+## 2026-04-16
+
+- Reviewed the old generated template folder and confirmed structural problems.
+- Replaced it with a clean static visual reference in `src/templates`.
+- Added reference pages:
+  - `index.html`
+  - `candidaturas.html`
+  - `cadastro.html`
+  - `detalhes.html`
+  - `reference.css`
+- Updated `angular.json` to serve `src/templates` under `/templates/...`.
+- Cleaned parts of the Angular base so the project compiled and tests passed.
+
+## 2026-04-20
+
+- Continued the real Angular implementation using the reference design as the target.
+- Confirmed the main app route points to the applications page.
+- Created the real domain model in `src/app/models/application.model.ts` with:
+  - `ApplicationStatus`
+  - `ModalityStatus`
+  - `JobApplication`
+- Standardized internal status/modality values in English to avoid encoding issues in code.
+- Implemented `JobApplicationService` with four mock applications and an observable return method.
+- Connected the `Applications` component to the service through dependency injection.
+- Loaded mock data in `ngOnInit()` and stored it in `applications: JobApplication[] = []`.
+- Rendered the applications list in the browser using Angular `@for`.
+- Clarified that the current list works functionally, but is still visually raw.
+- Updated continuity docs to reflect the real current state.
+- Created the missing mandatory file `docs/decisions.md`.
