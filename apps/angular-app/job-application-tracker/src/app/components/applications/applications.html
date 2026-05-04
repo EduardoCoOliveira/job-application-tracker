@@ -1,16 +1,135 @@
+<section class="topbar">
+  <div>
+    <p class="eyebrow">Tela principal</p>
+    <h1 class="page-title">Candidaturas</h1>
+    <p>
+      Acompanhe cada processo, filtre rapidamente por contexto e navegue pelas
+      oportunidades que ainda pedem sua atenção.
+    </p>
+  </div>
 
-    <section>
-        <title>Minhas Candidaturas</title>
-        <h1>Acompanhe cada processo, atualize status e encontre rápido as vagas que ainda precisam da sua atenção.</h1>
-        @for (application of applications; track application.id) {
-            <article>
-                <h2>{{application.company}}</h2>
-                <p>Cargo:{{application.position}}</p>
-                <p>Status: {{application.status}}</p>
-                <p>Modalidade: {{application.modality}}</p>
-                <p>Próxima ação: {{application.nextAction}}</p>
-                <p>Atualizado em: {{application.updatedAt}}</p>
-            </article>
-        }
-    </section>
+  <div class="topbar-actions">
+    <a class="button ghost" routerLink="/details/1">Ver detalhe</a>
+    <a class="button primary" routerLink="/register">Nova candidatura</a>
+  </div>
+</section>
 
+<section class="hero">
+  <div class="stats-grid">
+    <article class="stat-card">
+      <span class="muted">Em andamento</span>
+      <strong>{{ activeApplicationsCount }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="muted">Entrevistas</span>
+      <strong>{{ interviewApplicationsCount }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="muted">Respostas recentes</span>
+      <strong>{{ responseThisWeekCount }}</strong>
+    </article>
+    <article class="stat-card">
+      <span class="muted">Ações hoje</span>
+      <strong>{{ todayActionCount }}</strong>
+    </article>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-header applications-panel-header">
+    <div>
+      <h2 class="section-title">Lista de candidaturas</h2>
+      <p class="muted applications-panel-copy">
+        {{ filteredApplications.length }} de {{ applications.length }}
+        oportunidades visíveis
+      </p>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip" [class.active]="statusFilter === 'all'">
+        Todos os status
+      </span>
+      <span class="chip" [class.active]="modalityFilter === 'remote'">
+        Remoto
+      </span>
+      <span class="chip" [class.active]="sortBy === 'recent'">
+        Mais recentes
+      </span>
+    </div>
+  </div>
+
+  <div class="applications-filters">
+    <input
+      class="applications-search"
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Buscar por empresa ou cargo"
+    />
+
+    <select class="applications-filter" [(ngModel)]="statusFilter">
+      <option value="all">Todos os status</option>
+      <option value="saved">Salvas</option>
+      <option value="applied">Aplicado</option>
+      <option value="in_review">Em análise</option>
+      <option value="interview">Entrevista</option>
+      <option value="offer">Oferta</option>
+      <option value="rejected">Rejeitado</option>
+    </select>
+
+    <select class="applications-filter" [(ngModel)]="modalityFilter">
+      <option value="all">Todas modalidades</option>
+      <option value="remote">Remoto</option>
+      <option value="hybrid">Híbrido</option>
+      <option value="onsite">Presencial</option>
+    </select>
+
+    <select class="applications-filter" [(ngModel)]="sortBy">
+      <option value="recent">Mais recentes</option>
+      <option value="oldest">Mais antigas</option>
+      <option value="company">Empresa A-Z</option>
+    </select>
+  </div>
+
+  <div class="table-shell">
+    <div class="table-head applications-table">
+      <span>Empresa</span>
+      <span>Vaga</span>
+      <span>Status</span>
+      <span>Modalidade</span>
+      <span>Aplicado em</span>
+      <span>Atualizado</span>
+      <span></span>
+    </div>
+
+    @for (application of filteredApplications; track application.id) {
+      <article class="table-row applications-table">
+        <div>
+          <strong>{{ application.company }}</strong>
+          <div class="table-meta">{{ application.source }}</div>
+        </div>
+        <div>
+          <strong>{{ application.position }}</strong>
+          <div class="table-meta">{{ application.nextAction }}</div>
+        </div>
+        <span [class]="'status-pill ' + application.status">
+          {{ getStatusLabel(application.status) }}
+        </span>
+        <span>{{ getModalityLabel(application) }}</span>
+        <span>{{ application.appliedAt }}</span>
+        <span>{{ application.updatedAt }}</span>
+        <a class="button ghost applications-detail-link" [routerLink]="['/details', application.id]">
+          Detalhes
+        </a>
+      </article>
+    } @empty {
+      <div class="applications-empty">
+        <p class="eyebrow">Sem resultados</p>
+        <h3>Nenhuma candidatura combina com os filtros atuais.</h3>
+        <p class="muted">
+          Ajuste a busca, troque o status ou revise a ordenação para voltar a
+          enxergar oportunidades.
+        </p>
+      </div>
+    }
+  </div>
+</section>

@@ -1,1 +1,85 @@
-<p>details works!</p>
+@if (application; as application) {
+  <section class="topbar">
+    <div>
+      <p class="eyebrow">Tela de contexto</p>
+      <h1 class="page-title">{{ application.position }}</h1>
+      <p>
+        {{ application.company }} · Atualizado em {{ application.updatedAt }} ·
+        Stack em foco Angular, TypeScript e UI de produto
+      </p>
+    </div>
+
+    <div class="topbar-actions">
+      <a class="button ghost" routerLink="/">Voltar</a>
+      <a class="button primary" routerLink="/register">Editar</a>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="mini-card">
+        <p class="eyebrow">Resumo</p>
+        <h2 class="section-title">Etapa atual</h2>
+        <div class="spacer-top">
+          <span [class]="'status-pill ' + application.status">
+            {{ getStatusLabel(application.status) }}
+          </span>
+        </div>
+        <ul class="mini-list spacer-top">
+          <li>Modalidade: {{ getModalityLabel(application.modality) }}</li>
+          <li>Aplicado em {{ application.appliedAt }}</li>
+          <li>Próxima ação: {{ application.nextAction }}</li>
+        </ul>
+      </div>
+
+      <div class="mini-card">
+        <p class="eyebrow">Contato</p>
+        <h2 class="section-title">Pessoas e links</h2>
+        <ul class="mini-list spacer-top">
+          <li>Recruiter: {{ application.recruiterEmail ?? 'A definir' }}</li>
+          <li>Origem: {{ application.source }}</li>
+          <li>Link da vaga: {{ application.jobUrl }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="details-grid">
+      <div class="timeline">
+        @for (entry of application.timeline; track entry.date + entry.title) {
+          <article class="timeline-item">
+            <time>{{ entry.date }}</time>
+            <h3>{{ entry.title }}</h3>
+            <p class="muted">{{ entry.description }}</p>
+          </article>
+        }
+      </div>
+
+      <div class="preview-stack">
+        <div class="preview-card">
+          <p class="eyebrow">Leitura rápida</p>
+          <h3>{{ application.company }}</h3>
+          <p class="muted spacer-top">{{ application.summary }}</p>
+        </div>
+
+        <div class="preview-card">
+          <p class="eyebrow">Notas</p>
+          <p class="muted">{{ application.notes }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="panel">
+    <p class="eyebrow">Detalhes</p>
+    <h2 class="section-title">Candidatura não encontrada</h2>
+    <p class="muted">
+      O item solicitado não está disponível. Volte para a lista principal e
+      escolha outra candidatura.
+    </p>
+    <div class="spacer-top">
+      <a class="button primary" routerLink="/">Ir para candidaturas</a>
+    </div>
+  </section>
+}

@@ -1,2 +1,42 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">JAT</div>
+      <div class="brand-copy">
+        <strong>Job Application Tracker</strong>
+        <span>Angular app reference build</span>
+      </div>
+    </div>
 
-<router-outlet />
+    <nav class="nav-group">
+      <a
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        Candidaturas
+      </a>
+      <a routerLink="/register" routerLinkActive="active" class="nav-link">
+        Nova candidatura
+      </a>
+      <a routerLink="/details/1" routerLinkActive="active" class="nav-link">
+        Detalhes
+      </a>
+    </nav>
+
+    <div class="sidebar-note">
+      <p class="eyebrow">Stack em foco</p>
+      <ul class="mini-list">
+        <li>Angular standalone components</li>
+        <li>TypeScript com models e services</li>
+        <li>CSS modular com layout responsivo</li>
+        <li>Base pronta para API e dashboard Svelte</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content-shell">
+    <router-outlet />
+  </main>
+</div>

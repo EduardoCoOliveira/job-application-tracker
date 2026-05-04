@@ -13,7 +13,12 @@ export const routes: Routes = [
     component: Register,
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: Details,
+  },
+  {
+    path: 'details',
+    redirectTo: 'details/1',
+    pathMatch: 'full',
   },
 ];

@@ -2,47 +2,49 @@
 
 ## Goal
 
-Turn the current raw applications list into the first real page of the product, visually inspired by the reference file:
-
-- `src/templates/candidaturas.html`
+Create the first Svelte artifact in the repository so the project demonstrates both frontend frameworks requested by the internship.
 
 ## Exact Task
 
-Rebuild `src/app/components/applications/applications.html` and `applications.css` so the Angular page keeps using real mock data but starts to look like the intended final interface.
+Scaffold `apps/svelte-dashboard` and build a small dashboard view that reuses the same application concepts already implemented in Angular:
+
+- status counts
+- cards for recent applications
+- a simple reactive filter or store-based summary
 
 ## What To Do Next
 
-1. Open the reference page `src/templates/candidaturas.html`.
-2. Identify the main visual blocks:
-   - top header / page intro
-   - actions area
-   - filters/search area if present
-   - applications list/cards/table
-3. Rewrite the Angular component template so it contains only component markup.
-   - Do not use full-document tags like `html`, `head` or `body` inside the component template.
-4. Keep the `@for` loop, but place it inside the real visual structure.
-5. Create the base CSS for spacing, typography, cards and layout.
-6. Compare the Angular page in the browser with the reference and adjust structure first, details second.
+1. Create the `apps/svelte-dashboard` folder structure.
+2. Set up a minimal Svelte app or starter structure.
+3. Reuse the same domain vocabulary from Angular:
+   - applications
+   - statuses
+   - modalities
+4. Implement at least one Svelte `store` for application data or dashboard filters.
+5. Build one dashboard page with:
+   - overview metrics
+   - recent applications
+   - status breakdown
+6. Document how the Svelte dashboard compares architecturally with the Angular app.
 
 ## Technical Focus
 
-This step is mainly about learning:
+This next step should highlight:
 
-- component template structure in Angular
-- how to mix static layout with dynamic rendering
-- how to keep visual reference and real implementation separate
-- how to move from “working data” to “working UI”
+- Svelte reactivity
+- stores
+- component composition
+- comparison between Angular and Svelte approaches
 
 ## Rules
 
-- Keep using mock data.
-- Do not connect to backend yet.
-- Do not move app logic into `src/templates`.
-- Prioritize structure and CSS over advanced logic.
-- Fidelity to the reference matters more than adding new features right now.
+- Keep the dashboard lightweight.
+- It can still use local mock data first.
+- Reuse the same product language and visual system where it makes sense.
+- Do not block on backend integration yet.
 
-## Files For Review In The Next Session
+## Files To Review Next Session
 
-- `src/app/components/applications/applications.html`
-- `src/app/components/applications/applications.css`
-- optionally `src/app/components/applications/applications.ts` if any support property is added
+- `apps/svelte-dashboard/...`
+- any new Svelte store files
+- any updated docs that compare Angular vs Svelte

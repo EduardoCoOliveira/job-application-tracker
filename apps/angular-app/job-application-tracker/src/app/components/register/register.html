@@ -1,1 +1,131 @@
-<p>register works!</p>
+<section class="topbar">
+  <div>
+    <p class="eyebrow">Tela de entrada</p>
+    <h1 class="page-title">Nova candidatura</h1>
+    <p>
+      Formulário enxuto para registrar a vaga, salvar contexto rápido e manter
+      um preview útil do card final.
+    </p>
+  </div>
+
+  <div class="topbar-actions">
+    <a class="button ghost" routerLink="/">Cancelar</a>
+    <a class="button primary" routerLink="/">Salvar rascunho</a>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="form-layout">
+    <div class="form-section">
+      <div class="panel-header">
+        <h2 class="section-title">Informações principais</h2>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="company">Empresa</label>
+          <input
+            id="company"
+            type="text"
+            [(ngModel)]="draft.company"
+            placeholder="Ex: Ollama Labs"
+          />
+        </div>
+
+        <div class="field">
+          <label for="position">Cargo</label>
+          <input
+            id="position"
+            type="text"
+            [(ngModel)]="draft.position"
+            placeholder="Ex: Front-end Intern"
+          />
+        </div>
+
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" [(ngModel)]="draft.status">
+            <option value="saved">Salva</option>
+            <option value="applied">Aplicado</option>
+            <option value="in_review">Em análise</option>
+            <option value="interview">Entrevista</option>
+            <option value="offer">Oferta</option>
+            <option value="rejected">Rejeitado</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="modality">Modalidade</label>
+          <select id="modality" [(ngModel)]="draft.modality">
+            <option value="remote">Remoto</option>
+            <option value="hybrid">Híbrido</option>
+            <option value="onsite">Presencial</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="jobUrl">Link da vaga</label>
+          <input
+            id="jobUrl"
+            type="text"
+            [(ngModel)]="draft.jobUrl"
+            placeholder="https://empresa.com/vaga"
+          />
+        </div>
+
+        <div class="field full">
+          <label for="recruiterEmail">Contato do recruiter</label>
+          <input
+            id="recruiterEmail"
+            type="email"
+            [(ngModel)]="draft.recruiterEmail"
+            placeholder="recruiter@empresa.com"
+          />
+        </div>
+
+        <div class="field full">
+          <label for="notes">Observações</label>
+          <textarea
+            id="notes"
+            [(ngModel)]="draft.notes"
+            placeholder="Resumo da vaga, stack pedida, como você aplicou e o que precisa fazer depois."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-stack">
+      <div class="preview-card">
+        <p class="eyebrow">Preview do card</p>
+        <h3>{{ draft.position }}</h3>
+        <p class="muted">{{ draft.company }}</p>
+        <div class="spacer-top">
+          <span [class]="'status-pill ' + draft.status">
+            {{ getStatusLabel(draft.status) }}
+          </span>
+        </div>
+        <ul class="mini-list spacer-top">
+          <li>{{ getModalityLabel(draft.modality) }}</li>
+          <li>Atualizado ao salvar o registro</li>
+          <li>{{ draft.recruiterEmail }}</li>
+        </ul>
+      </div>
+
+      <div class="preview-card">
+        <p class="eyebrow">Checklist visual</p>
+        <ul class="mini-list">
+          <li [class.muted]="draft.company.trim().length === 0">
+            Empresa preenchida
+          </li>
+          <li [class.muted]="draft.position.trim().length === 0">
+            Cargo preenchido
+          </li>
+          <li>Status definido</li>
+          <li [class.muted]="draft.notes.trim().length < 20">
+            Observações iniciais escritas
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

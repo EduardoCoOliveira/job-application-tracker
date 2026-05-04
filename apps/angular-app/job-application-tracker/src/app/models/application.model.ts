@@ -10,13 +10,26 @@ export type ApplicationStatus =
 
 export type ModalityStatus = 'onsite' | 'remote' | 'hybrid';
 
-// Base shape used by the applications list and later by details/register flows.
+export interface ApplicationTimelineEntry {
+  date: string;
+  title: string;
+  description: string;
+}
+
 export interface JobApplication {
   id: string;
   company: string;
   position: string;
   status: ApplicationStatus;
   modality: ModalityStatus;
+  appliedAt: string;
   nextAction: string;
   updatedAt: string;
+  city?: string;
+  source: string;
+  jobUrl: string;
+  recruiterEmail?: string;
+  notes: string;
+  summary: string;
+  timeline: ApplicationTimelineEntry[];
 }

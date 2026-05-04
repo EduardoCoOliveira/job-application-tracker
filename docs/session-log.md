@@ -52,3 +52,24 @@
 - Clarified that the current list works functionally, but is still visually raw.
 - Updated continuity docs to reflect the real current state.
 - Created the missing mandatory file `docs/decisions.md`.
+
+## 2026-05-04
+
+- Finished the Angular visual implementation using the `templates` pages and `reference.css` as the design baseline.
+- Added a shared application shell with sticky sidebar navigation in `app.html`.
+- Moved the main visual system into `src/styles.css` for consistent tokens, panels, cards and responsive layout.
+- Extended the application domain model with richer fields for dates, notes, recruiter data and timeline entries.
+- Rebuilt the mock service with six coherent application records.
+- Reworked the applications page into a real filtered table with:
+  - live search
+  - status filter
+  - modality filter
+  - sort control
+  - mapped status/modality labels
+- Implemented the register page as a structured form with live preview using `ngModel`.
+- Implemented the details page with route-param loading, timeline, summary cards and fallback state.
+- Updated the details route to `details/:id` and added a redirect from `details` to `details/1`.
+- Fixed all related tests after introducing router dependencies.
+- Validated the Angular app successfully with:
+  - `npm run build`
+  - `npm run test`

@@ -43,22 +43,6 @@ Session rules:
   - `executor`
 - At the end of a session, update all four docs before committing.
 
-## Learning Flow
-
-The mentoring flow is intentionally gradual:
-
-1. GPT gives the next technical direction without dumping the full solution too early.
-2. The user implements alone when possible.
-3. If needed, GPT gives a more detailed explanation.
-4. If still needed and the user is on PC, GPT may prepare a prompt for Qwen via Continue.
-5. GPT reviews the resulting code and explains why it works and what can improve.
-
-The user requested especially didactic guidance:
-
-- explain why a file exists before asking for changes
-- explain syntax, concepts, and responsibility of each file
-- make each “north” more specific when requested
-
 ## Planned Architecture
 
 Main architecture:
@@ -94,18 +78,6 @@ Remote:
 - `origin`: `https://github.com/EduardoCoOliveira/job-application-tracker.git`
 - main branch: `main`
 
-### Documentation
-
-Present in the repo:
-
-- `README.md`
-- `docs/architecture.md`
-- `docs/study-roadmap.md`
-- `docs/ai-context.md`
-- `docs/session-log.md`
-- `docs/next-step.md`
-- `docs/decisions.md`
-
 ### Angular App
 
 Angular app location:
@@ -114,15 +86,16 @@ Angular app location:
 
 Current Angular state:
 
-- app exists and runs locally
-- routing is configured
-- three routes/pages exist:
+- app shell implemented with persistent sidebar navigation
+- routes configured for:
   - `''` -> applications list
   - `'register'` -> register page
-  - `'details'` -> details page
-- standalone app structure is being used
-- root app imports `RouterOutlet`
-- current unit test checks app creation and `router-outlet`
+  - `'details/:id'` -> details page
+- standalone components are being used
+- app shell is rendered in `src/app/app.html`
+- global design system styles are centralized in `src/styles.css`
+- production build passes
+- tests pass
 
 ### Angular Domain Layer
 
@@ -130,23 +103,32 @@ Current model file:
 
 - `src/app/models/application.model.ts`
 
-Implemented:
+Implemented types/interfaces:
 
-- `ApplicationStatus` type
-- `ModalityStatus` type
-- `JobApplication` interface
+- `ApplicationStatus`
+- `ModalityStatus`
+- `ApplicationTimelineEntry`
+- `JobApplication`
 
-Current `JobApplication` shape:
+Current `JobApplication` shape includes:
 
 - `id`
 - `company`
 - `position`
 - `status`
 - `modality`
+- `appliedAt`
 - `nextAction`
 - `updatedAt`
+- `city?`
+- `source`
+- `jobUrl`
+- `recruiterEmail?`
+- `notes`
+- `summary`
+- `timeline`
 
-Status/modality values are kept in **English** internally to avoid encoding issues and keep code values stable.
+Status/modality values are kept in English internally to avoid encoding issues and keep code values stable.
 
 ### Angular Service Layer
 
@@ -156,35 +138,64 @@ Current service file:
 
 Implemented:
 
-- service with mock data
-- mock list with four applications
-- public method returning `Observable<JobApplication[]>`
+- richer mock dataset with six applications
+- `getAllApplications()`
+- `getApplicationById(id)`
+- `getFeaturedApplication()`
 
-The app is still using **mock data**, not HTTP/API yet.
+The app still uses **mock data**, not HTTP/API yet.
 
 ### Angular Applications Page
 
-Current component files:
+Files:
 
 - `src/app/components/applications/applications.ts`
 - `src/app/components/applications/applications.html`
+- `src/app/components/applications/applications.css`
 
 Implemented:
 
-- component property `applications: JobApplication[] = []`
-- service injection through constructor
-- `ngOnInit()` subscription to load mock data
-- template loop with Angular `@for`
-- applications are already rendering in the browser
+- hero/topbar and metrics cards
+- search + status/modality/sort filters with `ngModel`
+- filtered and sorted table view
+- status pill mapping and modality formatting in TypeScript
+- details navigation per row
 
-Current limitation:
+### Angular Register Page
 
-- the page is still mostly raw/unpolished
-- rendering is functional, but the final visual structure still needs to be recreated based on the reference template
+Files:
+
+- `src/app/components/register/register.ts`
+- `src/app/components/register/register.html`
+- `src/app/components/register/register.css`
+
+Implemented:
+
+- structured form layout based on the visual reference
+- live template-driven preview using `ngModel`
+- status/modality label formatting in TypeScript
+- sidebar/topbar integration through shared shell
+
+### Angular Details Page
+
+Files:
+
+- `src/app/components/details/details.ts`
+- `src/app/components/details/details.html`
+- `src/app/components/details/details.css`
+
+Implemented:
+
+- route-param based detail loading using `ActivatedRoute`
+- status summary card
+- contact/context card
+- timeline rendering from mock data
+- notes/summary sidebar cards
+- empty state when an application is not found
 
 ### Visual Reference
 
-There is a static visual reference under:
+Static visual reference remains under:
 
 - `apps/angular-app/job-application-tracker/src/templates`
 
@@ -192,35 +203,26 @@ Purpose:
 
 - visual inspiration only
 - not part of the real Angular feature flow
-- can be served through Angular assets
+- can still be served through Angular assets
 
-Current reference pages:
+### Svelte Status
 
-- `index.html`
-- `candidaturas.html`
-- `cadastro.html`
-- `detalhes.html`
-- `reference.css`
-
-From this point on, the user wants the real app to be rebuilt **as close as possible** to the visual reference, while gradually adding real functionality.
+Svelte dashboard is still planned but not scaffolded yet in the repo.
 
 ## Open Work
 
 Frontend next:
 
-- transform the raw applications page into the real layout inspired by `candidaturas.html`
-- remove any leftover full-document HTML structure from component templates if still present
-- add proper CSS and page structure
-- then build `register`
-- then build `details`
+- scaffold the Svelte dashboard app
+- reuse the same application domain shape in a small reactive dashboard
+- compare Angular pages vs Svelte dashboard architecture
 
 Backend later:
 
 - create Node/Express API
-- connect Angular with `HttpClient`
+- replace Angular mock data with `HttpClient`
 - model PostgreSQL schema
 - write SQL filters and analytics queries
-- add Svelte dashboard
 - build Java/Spring study API
 
 ## Known Constraints / Notes

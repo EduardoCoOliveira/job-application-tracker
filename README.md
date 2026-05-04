@@ -1,6 +1,6 @@
 # Job Application Tracker
 
-Aplicacao full-stack para gerenciamento de candidaturas de estagio/junior, com foco em organizacao do funil de vagas, acompanhamento de status, proximas acoes e visualizacao de metricas.
+Aplicação full-stack para gerenciamento de candidaturas de estágio/júnior, com foco em organização do funil de vagas, acompanhamento de status, próximas ações e visualização de métricas.
 
 ## Objetivo
 
@@ -19,14 +19,14 @@ Este projeto existe para consolidar conhecimentos em:
 - Java
 - Spring Boot
 
-A proposta e construir uma aplicacao realista de portfolio com dois frontends consumindo a mesma API, enquanto o repositorio tambem serve como trilha pratica de estudo para banco de dados e backend.
+A proposta é construir uma aplicação realista de portfólio com dois frontends consumindo a mesma API, enquanto o repositório também serve como trilha prática de estudo para banco de dados e backend.
 
 ## Escopo
 
 O projeto foi dividido em duas frentes:
 
 - **Entrega principal:** Angular + Svelte + Node.js/Express + PostgreSQL
-- **Estudo complementar:** SQL aplicado ao dominio e uma API experimental com Java/Spring Boot
+- **Estudo complementar:** SQL aplicado ao domínio e uma API experimental com Java/Spring Boot
 
 ## Stack
 
@@ -36,17 +36,9 @@ O projeto foi dividido em duas frentes:
 - **Banco de dados:** PostgreSQL
 - **Consultas e estudos:** SQL
 - **Backend complementar:** Java + Spring Boot
-- **Estilizacao:** CSS moderno e responsivo
+- **Estilização:** CSS moderno e responsivo
 
-## Arquitetura
-
-- **Angular:** aplicacao principal com rotas, componentes, services e futuramente `HttpClient`
-- **Svelte:** dashboard reativo complementar para comparacao de abordagens
-- **Node/Express:** API principal da primeira entrega
-- **PostgreSQL:** banco relacional principal
-- **Java/Spring Boot:** modulo de estudo para comparar arquitetura backend
-
-## Estrutura do repositorio
+## Estrutura do repositório
 
 ```text
 job-application-tracker/
@@ -74,49 +66,40 @@ job-application-tracker/
 
 ## Estado atual
 
-Ja existe uma base Angular iniciada em:
+A aplicação Angular em `apps/angular-app/job-application-tracker` está em um estado apresentável para portfólio.
 
-- `apps/angular-app/job-application-tracker`
+O que já foi implementado:
 
-O que ja foi feito no Angular:
+- shell compartilhado com navegação lateral
+- rota de lista de candidaturas
+- rota de cadastro
+- rota de detalhes por id
+- model tipado com timeline, notas, contato e datas
+- service com mock data mais rico
+- filtros e ordenação na tela principal
+- página de cadastro com formulário e preview
+- página de detalhes com resumo, timeline e contexto
+- layout visual alinhado às referências em `src/templates`
+- build e testes passando
 
-- rotas para candidaturas, cadastro e detalhes
-- model real em `src/app/models/application.model.ts`
-- service com mock data em `src/app/services/application.service.ts`
-- lista de candidaturas sendo renderizada com Angular `@for`
-- referencia visual estatica em `src/templates`
+## Próxima frente
 
-O que ainda falta na fase atual:
-
-- reconstruir a tela de candidaturas com layout fiel ao template de referencia
-- estilizar a pagina real com CSS
-- implementar as telas reais de cadastro e detalhes
-- depois substituir mock por API
-
-## Ordem de desenvolvimento
-
-1. Documentacao e estrutura do repositorio
-2. Frontend principal em Angular
-3. Dashboard complementar em Svelte
-4. API principal em Node.js + Express
-5. Modelagem e consultas em PostgreSQL/SQL
-6. API complementar em Java/Spring Boot
+A próxima etapa natural é iniciar `apps/svelte-dashboard` para cobrir o segundo frontend da proposta e mostrar reatividade com stores em Svelte.
 
 ## Diferenciais para entrevista
 
-Este projeto foi desenhado para permitir explicacoes tecnicas claras sobre:
+Este projeto foi desenhado para permitir explicações técnicas claras sobre:
 
-- diferencas entre Angular e Svelte
-- separacao entre layout de referencia e implementacao real
-- fluxo `model -> service -> component -> template`
-- consumo de API por frontends diferentes
-- modelagem relacional com PostgreSQL
-- queries SQL de filtros e metricas
-- comparacao entre Express e Spring Boot
+- Angular standalone components
+- organização entre `models`, `services`, rotas e templates
+- uso de TypeScript para mapear estado e apresentação
+- separação entre layout de referência e implementação real
+- futuro contraste entre Angular e Svelte
+- futura integração com API Node/Express e PostgreSQL
 
 ## Documentos de continuidade
 
-Para continuar o projeto em outra maquina sem depender do historico da conversa, use:
+Para continuar o projeto em outra máquina sem depender do histórico da conversa, use:
 
 - `docs/ai-context.md`
 - `docs/session-log.md`
@@ -125,4 +108,4 @@ Para continuar o projeto em outra maquina sem depender do historico da conversa,
 
 ## Status
 
-Projeto em fase inicial de implementacao do frontend Angular, com dados mockados funcionando e proximo foco na reconstrucao visual da pagina de candidaturas.
+Projeto com frontend Angular funcional e visualmente refinado, pronto para avançar para a frente de Svelte e depois para backend/API.

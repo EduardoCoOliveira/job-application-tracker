@@ -40,22 +40,40 @@ A ideia é usar o mesmo domínio do projeto para estudar uma arquitetura mais ente
 
 Comecei o Angular com model + service + dados mockados.
 
-Essa decisão ajuda a validar a estrutura da interface e o fluxo entre component, service e template antes de depender de API, banco ou autenticação.
+Essa decisão ajudou a validar estrutura, fluxo de dados e a interface inteira antes de depender de API, banco ou autenticação.
 
 ## Valores internos em inglês
 
 Os valores internos de status e modalidade ficaram em inglês.
 
-Fiz isso para evitar problemas de encoding e também para manter o código mais estável. Se eu quiser, depois posso mapear esses valores para rótulos em português na interface sem mexer no domínio interno.
+Fiz isso para evitar problemas de encoding e também para manter o código mais estável. Depois posso mapear tudo para rótulos em português na interface sem mexer no domínio interno.
 
 ## Referência visual separada da implementação real
 
 Mantive `src/templates` apenas como referência visual.
 
-Isso evita misturar HTML estático com o código real da aplicação. A referência serve como alvo de design; a implementação real acontece nos componentes Angular.
+Isso evitou misturar HTML estático com o código real da aplicação. A referência serviu como alvo visual, e a implementação real ficou organizada nos componentes Angular.
 
-## Próxima direção visual primeiro, lógica depois
+## Shell compartilhado no Angular
 
-A partir do ponto atual, a prioridade imediata é transformar a lista crua de candidaturas em uma página visualmente fiel ao template de referência.
+Decidi colocar a navegação lateral e a base visual do app em um shell compartilhado no `app.html`.
 
-A lógica básica já prova que o fluxo de dados funciona. Agora faz mais sentido evoluir layout, estrutura e CSS antes de partir para backend.
+Isso deixou as três telas com aparência consistente e evitou repetição desnecessária de layout em cada componente.
+
+## Mock data mais rico para fortalecer a interface
+
+Ampliei o model e os dados mockados com datas, resumo, notas, origem, contato e timeline.
+
+Fiz isso porque a interface de detalhes e a tabela principal ficavam pobres demais com o model inicial. Para uma entrega de portfólio, valia mais ter um domínio mockado convincente do que manter dados mínimos demais.
+
+## Filtros reais na página principal
+
+A lista de candidaturas não ficou só estática. Adicionei busca, filtros e ordenação no próprio front.
+
+Isso melhora a percepção de produto pronto e também mostra melhor uso de TypeScript, Angular forms e transformação de dados na camada de apresentação.
+
+## Próximo passo passou a ser Svelte
+
+Como a interface Angular já ficou em um estado apresentável, o próximo investimento mais valioso é abrir a frente de Svelte.
+
+Isso ajuda a cobrir o requisito da vaga sem mexer no que já está estável no Angular.
