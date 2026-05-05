@@ -25,3 +25,6 @@ Thumbs.db
 
 # Local backup of the first Angular-only Git metadata.
 _old_git_metadata/
+
+# Out-of-scope experiments kept locally.
+backend/

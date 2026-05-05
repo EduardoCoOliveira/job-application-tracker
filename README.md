@@ -1,6 +1,6 @@
 # Job Application Tracker
 
-Aplicação full-stack para gerenciamento de candidaturas de estágio/júnior, com foco em organização do funil de vagas, acompanhamento de status, próximas ações e visualização de métricas.
+Aplicação de portfólio para gerenciamento de candidaturas de estágio/júnior, com foco em organização do funil de vagas, acompanhamento de status, próximas ações e visualização de métricas.
 
 ## Objetivo
 
@@ -12,31 +12,15 @@ Este projeto existe para consolidar conhecimentos em:
 - TypeScript
 - Angular
 - Svelte
-- Node.js
-- Express
-- PostgreSQL
-- SQL
-- Java
-- Spring Boot
 
-A proposta é construir uma aplicação realista de portfólio com dois frontends consumindo a mesma API, enquanto o repositório também serve como trilha prática de estudo para banco de dados e backend.
+A proposta é construir uma aplicação realista com dois frontends no mesmo domínio, permitindo comparar abordagens de interface, reatividade e organização de estado.
 
-## Escopo
-
-O projeto foi dividido em duas frentes:
-
-- **Entrega principal:** Angular + Svelte + Node.js/Express + PostgreSQL
-- **Estudo complementar:** SQL aplicado ao domínio e uma API experimental com Java/Spring Boot
-
-## Stack
+## Stack atual
 
 - **Frontend principal:** Angular
 - **Dashboard complementar:** Svelte
-- **Backend principal:** Node.js + Express
-- **Banco de dados:** PostgreSQL
-- **Consultas e estudos:** SQL
-- **Backend complementar:** Java + Spring Boot
 - **Estilização:** CSS moderno e responsivo
+- **Linguagem de modelagem da aplicação:** TypeScript
 
 ## Estrutura do repositório
 
@@ -53,20 +37,13 @@ job-application-tracker/
   apps/
     angular-app/
     svelte-dashboard/
-  backend/
-    api/
-    java-api-study/
-  database/
-    schema.sql
-    seed.sql
-    queries/
-      analytics.sql
-      filters.sql
 ```
 
 ## Estado atual
 
-A aplicação Angular em `apps/angular-app/job-application-tracker` está em um estado apresentável para portfólio.
+### Angular
+
+A aplicação Angular em `apps/angular-app/job-application-tracker` está funcional e apresentável.
 
 O que já foi implementado:
 
@@ -75,16 +52,32 @@ O que já foi implementado:
 - rota de cadastro
 - rota de detalhes por id
 - model tipado com timeline, notas, contato e datas
-- service com mock data mais rico
+- service reativo com `BehaviorSubject`
+- persistência local com `localStorage`
 - filtros e ordenação na tela principal
 - página de cadastro com formulário e preview
 - página de detalhes com resumo, timeline e contexto
-- layout visual alinhado às referências em `src/templates`
 - build e testes passando
+
+### Svelte
+
+O dashboard Svelte em `apps/svelte-dashboard` já foi criado e validado.
+
+O que já foi implementado:
+
+- app com Vite + Svelte + TypeScript
+- mock data alinhado ao domínio do Angular
+- store central com estado derivado
+- filtro reativo por status
+- métricas gerais
+- painel de candidaturas recentes
+- leitura do mesmo `localStorage` do Angular com fallback para seed local
+- linguagem visual coerente com o Angular
+- build passando
 
 ## Próxima frente
 
-A próxima etapa natural é iniciar `apps/svelte-dashboard` para cobrir o segundo frontend da proposta e mostrar reatividade com stores em Svelte.
+A próxima etapa natural é refinar a experiência de uso e melhorar a consistência entre Angular e Svelte sem sair do escopo front-end only.
 
 ## Diferenciais para entrevista
 
@@ -93,9 +86,9 @@ Este projeto foi desenhado para permitir explicações técnicas claras sobre:
 - Angular standalone components
 - organização entre `models`, `services`, rotas e templates
 - uso de TypeScript para mapear estado e apresentação
-- separação entre layout de referência e implementação real
-- futuro contraste entre Angular e Svelte
-- futura integração com API Node/Express e PostgreSQL
+- Svelte stores e reatividade com pouco boilerplate
+- comparação direta entre Angular e Svelte no mesmo domínio
+- construção de um produto funcional sem depender de backend
 
 ## Documentos de continuidade
 
@@ -108,4 +101,4 @@ Para continuar o projeto em outra máquina sem depender do histórico da conversa,
 
 ## Status
 
-Projeto com frontend Angular funcional e visualmente refinado, pronto para avançar para a frente de Svelte e depois para backend/API.
+Projeto com Angular funcional, cadastro real no front-end e dashboard inicial em Svelte, pronto para refinamento e alinhamento entre os dois frontends.

@@ -1,79 +1,92 @@
-# Decisions
+Ôªø# Decisions
 
 ## Repository root
 
-Mantive o repositÛrio Git na raiz `Job Application Tracker`.
+Mantive o reposit√≥rio Git na raiz `Job Application Tracker`.
 
-Fiz isso porque o projeto n„o È sÛ o app Angular. TambÈm preciso versionar a documentaÁ„o, o backend, os scripts SQL e o futuro dashboard em Svelte. Se o Git ficasse sÛ dentro do Angular, eu perderia a vis„o do projeto inteiro.
+Fiz isso porque o projeto n√£o √© s√≥ o app Angular. Tamb√©m preciso versionar a documenta√ß√£o e o frontend em Svelte. Se o Git ficasse s√≥ dentro do Angular, eu perderia a vis√£o do projeto inteiro.
 
 ## CSS em vez de SCSS
 
 Decidi usar CSS puro no Angular.
 
-O motivo È simples: quero praticar CSS moderno de forma direta e entender melhor layout, responsividade e organizaÁ„o visual antes de adicionar mais uma camada de abstraÁ„o.
+O motivo √© simples: quero praticar CSS moderno de forma direta e entender melhor layout, responsividade e organiza√ß√£o visual antes de adicionar mais uma camada de abstra√ß√£o.
 
 ## Sem SSR/SSG agora
 
-N„o vou usar SSR ou SSG nesta fase.
+N√£o vou usar SSR ou SSG nesta fase.
 
-O projeto tem perfil de dashboard/aplicaÁ„o interna, ent„o o valor de SSR agora È baixo. Prefiro focar primeiro em componentes, rotas, dados, formul·rios e integraÁ„o com API.
+O projeto tem perfil de dashboard/aplica√ß√£o interna, ent√£o o valor disso agora √© baixo. Prefiro focar em componentes, rotas, dados, formul√°rios e experi√™ncia de uso no front.
 
-## PostgreSQL + API prÛpria
+## Projeto front-end only
 
-Troquei a ideia inicial de Supabase por PostgreSQL com API prÛpria.
+Decidi tirar Java, Spring Boot, PostgreSQL e o restante da trilha de backend do plano ativo.
 
-Isso deixa o projeto mais forte para entrevista porque me forÁa a praticar modelagem relacional, SQL de verdade e construÁ„o de backend com mais controle da arquitetura.
+Neste momento faz mais sentido concentrar energia em entregar um site funcional e apresent√°vel com HTML, CSS, TypeScript, Angular e Svelte, que s√£o justamente as tecnologias da vaga.
 
-## Node/Express como caminho principal
+## Backend fora do fluxo principal do reposit√≥rio
 
-A primeira API vai ser em Node.js + Express.
+Deixei `backend/` fora do fluxo de versionamento ativo.
 
-Escolhi isso porque È o caminho mais r·pido para sair do mock e chegar em um produto funcional. Depois eu comparo com Java/Spring Boot com mais calma, sem travar a entrega principal.
+Hoje ele n√£o faz parte da entrega principal nem do plano da entrevista. Ignorar essa √°rea local evita ru√≠do no Git e mant√©m o foco no que realmente preciso mostrar.
 
-## Spring Boot como trilha complementar
+## Mock data antes de qualquer integra√ß√£o externa
 
-Java/Spring Boot entrou no projeto como estudo complementar, n„o como dependÍncia da primeira entrega.
+Comecei pelos frontends com model + service/store + dados mockados.
 
-A ideia È usar o mesmo domÌnio do projeto para estudar uma arquitetura mais enterprise e conseguir explicar diferenÁas de abordagem em entrevista.
+Essa decis√£o ajudou a validar estrutura, fluxo de dados e a interface inteira antes de depender de API, banco ou autentica√ß√£o.
 
-## Mock data antes de backend real
+## Persist√™ncia local no Angular
 
-Comecei o Angular com model + service + dados mockados.
+Transformei o Angular de mock est√°tico em um fluxo funcional com `BehaviorSubject` e `localStorage`.
 
-Essa decis„o ajudou a validar estrutura, fluxo de dados e a interface inteira antes de depender de API, banco ou autenticaÁ„o.
+Isso permite cadastrar novas candidaturas, voltar para a lista e abrir os detalhes do item criado, tudo sem backend. Para o objetivo atual, isso entrega mais valor do que come√ßar uma API.
 
-## Valores internos em inglÍs
+## Svelte lendo o mesmo localStorage
 
-Os valores internos de status e modalidade ficaram em inglÍs.
+Fiz o Svelte hidratar do mesmo `localStorage` do Angular, com mock como fallback.
 
-Fiz isso para evitar problemas de encoding e tambÈm para manter o cÛdigo mais est·vel. Depois posso mapear tudo para rÛtulos em portuguÍs na interface sem mexer no domÌnio interno.
+Essa foi a melhor escolha porque os dois frontends agora parecem duas vis√µes do mesmo produto, em vez de dois prot√≥tipos desconectados. Tamb√©m ficou √≥timo para explicar arquitetura na entrevista sem envolver backend.
 
-## ReferÍncia visual separada da implementaÁ„o real
+## Valores internos em ingl√™s
 
-Mantive `src/templates` apenas como referÍncia visual.
+Os valores internos de status e modalidade ficaram em ingl√™s.
 
-Isso evitou misturar HTML est·tico com o cÛdigo real da aplicaÁ„o. A referÍncia serviu como alvo visual, e a implementaÁ„o real ficou organizada nos componentes Angular.
+Fiz isso para evitar problemas de encoding e tamb√©m para manter o c√≥digo mais est√°vel. Depois posso mapear tudo para r√≥tulos em portugu√™s na interface sem mexer no dom√≠nio interno.
+
+## Refer√™ncia visual separada da implementa√ß√£o real
+
+Mantive `src/templates` apenas como refer√™ncia visual.
+
+Isso evitou misturar HTML est√°tico com o c√≥digo real da aplica√ß√£o. A refer√™ncia serviu como alvo visual, e a implementa√ß√£o real ficou organizada nos componentes Angular.
 
 ## Shell compartilhado no Angular
 
-Decidi colocar a navegaÁ„o lateral e a base visual do app em um shell compartilhado no `app.html`.
+Decidi colocar a navega√ß√£o lateral e a base visual do app em um shell compartilhado no `app.html`.
 
-Isso deixou as trÍs telas com aparÍncia consistente e evitou repetiÁ„o desnecess·ria de layout em cada componente.
+Isso deixou as tr√™s telas com apar√™ncia consistente e evitou repeti√ß√£o desnecess√°ria de layout em cada componente.
 
 ## Mock data mais rico para fortalecer a interface
 
 Ampliei o model e os dados mockados com datas, resumo, notas, origem, contato e timeline.
 
-Fiz isso porque a interface de detalhes e a tabela principal ficavam pobres demais com o model inicial. Para uma entrega de portfÛlio, valia mais ter um domÌnio mockado convincente do que manter dados mÌnimos demais.
+Fiz isso porque a interface de detalhes e a tabela principal ficavam pobres demais com o model inicial. Para uma entrega de portf√≥lio, valia mais ter um dom√≠nio mockado convincente do que manter dados m√≠nimos demais.
 
-## Filtros reais na p·gina principal
+## Filtros reais na p√°gina principal
 
-A lista de candidaturas n„o ficou sÛ est·tica. Adicionei busca, filtros e ordenaÁ„o no prÛprio front.
+A lista de candidaturas n√£o ficou s√≥ est√°tica. Adicionei busca, filtros e ordena√ß√£o no pr√≥prio front.
 
-Isso melhora a percepÁ„o de produto pronto e tambÈm mostra melhor uso de TypeScript, Angular forms e transformaÁ„o de dados na camada de apresentaÁ„o.
+Isso melhora a percep√ß√£o de produto pronto e tamb√©m mostra melhor uso de TypeScript, Angular forms e transforma√ß√£o de dados na camada de apresenta√ß√£o.
 
-## PrÛximo passo passou a ser Svelte
+## Svelte como dashboard reativo, n√£o como app duplicado
 
-Como a interface Angular j· ficou em um estado apresent·vel, o prÛximo investimento mais valioso È abrir a frente de Svelte.
+No Svelte eu n√£o repliquei a aplica√ß√£o inteira do Angular.
 
-Isso ajuda a cobrir o requisito da vaga sem mexer no que j· est· est·vel no Angular.
+Preferi fazer um dashboard mais enxuto, usando stores e estado derivado, porque isso mostra melhor a proposta do framework e evita gastar tempo duplicando p√°ginas que j√° estavam resolvidas no Angular.
+
+## Linguagem visual consistente entre os dois frontends
+
+Mantive o dashboard em Svelte bem pr√≥ximo do visual do Angular.
+
+Fiz isso para o projeto parecer um sistema √∫nico, mesmo com tecnologias diferentes. Para entrevista, isso ajuda a mostrar crit√©rio de produto e n√£o s√≥ experimenta√ß√£o t√©cnica solta.
+

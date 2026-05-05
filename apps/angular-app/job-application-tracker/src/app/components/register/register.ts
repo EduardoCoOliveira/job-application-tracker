@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   ApplicationStatus,
   ModalityStatus,
 } from '../../models/application.model';
+import {
+  CreateApplicationInput,
+  JobApplicationService,
+} from '../../services/application.service';
 
 interface DraftApplication {
   company: string;
@@ -30,9 +34,26 @@ export class Register {
     modality: 'remote',
     jobUrl: 'https://empresa.com/vaga/frontend-intern',
     notes:
-      'Priorizar narrativa sobre componentes reutilizaveis, consumo de API e diferencas entre Angular e Svelte.',
+      'Priorizar narrativa sobre componentes reutilizáveis, consumo de API e diferenças entre Angular e Svelte.',
     recruiterEmail: 'recruiter@empresa.com',
   };
+
+  isSaving = false;
+
+  constructor(
+    private readonly jobApplicationService: JobApplicationService,
+    private readonly router: Router,
+  ) {}
+
+  saveDraft(): void {
+    this.isSaving = true;
+
+    const created = this.jobApplicationService.createApplication(
+      this.draft as CreateApplicationInput,
+    );
+
+    this.router.navigate(['/details', created.id]);
+  }
 
   getStatusLabel(status: ApplicationStatus): string {
     const labels: Record<ApplicationStatus, string> = {

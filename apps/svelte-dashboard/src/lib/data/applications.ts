@@ -1,0 +1,85 @@
+import type { JobApplication } from '../types';
+
+export const applications: JobApplication[] = [
+  {
+    id: '1',
+    company: 'Nubank',
+    position: 'Senior Frontend Engineer',
+    status: 'interview',
+    modality: 'remote',
+    appliedAt: '12 Mar 2026',
+    nextAction: 'Review architecture stories before recruiter call',
+    updatedAt: 'Today',
+    source: 'Company careers page',
+    summary:
+      'Strong match for component architecture, platform work and frontend quality systems.',
+  },
+  {
+    id: '2',
+    company: 'Mercado Livre',
+    position: 'Fullstack Developer',
+    status: 'in_review',
+    modality: 'hybrid',
+    appliedAt: '25 Mar 2026',
+    nextAction: 'Prepare portfolio follow-up with API examples',
+    updatedAt: '2 days ago',
+    city: 'Sao Paulo',
+    source: 'Referral',
+    summary:
+      'Opportunity to show full-stack range with product, API and data modeling examples.',
+  },
+  {
+    id: '3',
+    company: 'Loft',
+    position: 'Product Designer',
+    status: 'interview',
+    modality: 'remote',
+    appliedAt: '08 Mar 2026',
+    nextAction: 'Review product case and storytelling flow',
+    updatedAt: 'Yesterday',
+    source: 'LinkedIn',
+    summary:
+      'Visual role with strong emphasis on product reasoning, UX clarity and communication.',
+  },
+  {
+    id: '4',
+    company: 'iFood',
+    position: 'UX Researcher',
+    status: 'applied',
+    modality: 'onsite',
+    appliedAt: '02 Apr 2026',
+    nextAction: 'Track inbox and recruiter updates',
+    updatedAt: '10 days ago',
+    city: 'Sao Paulo',
+    source: 'Recruiter message',
+    summary:
+      'Useful role to practice research storytelling, synthesis and stakeholder communication.',
+  },
+  {
+    id: '5',
+    company: 'QuintoAndar',
+    position: 'Product Designer Sr',
+    status: 'offer',
+    modality: 'hybrid',
+    appliedAt: '20 Jan 2026',
+    nextAction: 'Review compensation package and hybrid routine',
+    updatedAt: '5 days ago',
+    city: 'Sao Paulo',
+    source: 'Company website',
+    summary:
+      'Best-positioned process so far, with strong alignment and a clear offer on the table.',
+  },
+  {
+    id: '6',
+    company: 'CloudWalk',
+    position: 'Software Engineer',
+    status: 'rejected',
+    modality: 'remote',
+    appliedAt: '10 Feb 2026',
+    nextAction: 'Archive notes and capture lessons learned',
+    updatedAt: '28 Feb 2026',
+    source: 'Company website',
+    summary:
+      'Closed process, but still useful as a benchmark for backend-oriented technical interviews.',
+  },
+];

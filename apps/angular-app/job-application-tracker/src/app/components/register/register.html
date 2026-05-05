@@ -1,4 +1,4 @@
-<section class="topbar">
+﻿<section class="topbar">
   <div>
     <p class="eyebrow">Tela de entrada</p>
     <h1 class="page-title">Nova candidatura</h1>
@@ -10,7 +10,9 @@
 
   <div class="topbar-actions">
     <a class="button ghost" routerLink="/">Cancelar</a>
-    <a class="button primary" routerLink="/">Salvar rascunho</a>
+    <button class="button primary" type="button" (click)="saveDraft()">
+      {{ isSaving ? 'Salvando...' : 'Salvar rascunho' }}
+    </button>
   </div>
 </section>
 

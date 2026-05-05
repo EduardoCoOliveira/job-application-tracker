@@ -2,24 +2,23 @@
 
 ## Project
 
-**Job Application Tracker** is a portfolio-grade full-stack application for tracking internship/junior job applications.
+**Job Application Tracker** is a portfolio-grade frontend application for tracking internship/junior job applications.
 
 Core product goals:
 
 - register applications
 - track status changes through the hiring funnel
 - store next actions and recent updates
-- visualize the process through multiple frontends
+- visualize the process through two frontend approaches
 
 Learning goals tied to the project:
 
-- HTML, CSS, JavaScript
+- HTML
+- CSS
+- JavaScript
 - TypeScript
 - Angular
 - Svelte
-- Node.js + Express
-- PostgreSQL + SQL
-- Java + Spring Boot
 
 ## Working Protocol
 
@@ -45,19 +44,17 @@ Session rules:
 
 ## Planned Architecture
 
-Main architecture:
+Current architecture focus:
 
-- **Angular**: primary application UI
+- **Angular**: main application UI with multi-page flow
 - **Svelte**: secondary reactive dashboard / comparative frontend
-- **Node.js + Express**: main backend API
-- **PostgreSQL**: main relational database
-- **SQL scripts**: query practice for filtering and analytics
-- **Java + Spring Boot**: secondary study backend for architectural comparison
+- **TypeScript domain model**: shared product vocabulary across both frontends
+- **Local mock data / local persistence**: front-end only data flow for now
 
-Important architectural decision:
+Important scope decision:
 
-- Spring Boot is **not** the critical path for the first delivery.
-- The first working product path is **Angular -> Node/Express -> PostgreSQL**.
+- The project is intentionally **front-end only**.
+- Java, Spring Boot, PostgreSQL and backend/API work are no longer part of the active plan.
 
 ## Current Implementation State
 
@@ -69,9 +66,8 @@ This is intentional so the repo versions:
 
 - documentation
 - Angular app
-- future Svelte app
-- backend folders
-- database scripts
+- Svelte app
+- optional experiment folders already present in the repo
 
 Remote:
 
@@ -91,17 +87,43 @@ Current Angular state:
   - `''` -> applications list
   - `'register'` -> register page
   - `'details/:id'` -> details page
-- standalone components are being used
-- app shell is rendered in `src/app/app.html`
 - global design system styles are centralized in `src/styles.css`
+- rich mock data, filters, sorting, register preview and details timeline are implemented
+- register page creates real front-end records through the service
+- service uses `BehaviorSubject` + `localStorage` for local persistence
+- created applications appear in the list and can be opened in details
 - production build passes
 - tests pass
+
+### Svelte App
+
+Svelte app location:
+
+- `apps/svelte-dashboard`
+
+Current Svelte state:
+
+- standalone Vite + Svelte + TypeScript app scaffolded
+- build passes with `npm run build`
+- local mock data reuses the same application domain concepts from Angular
+- store-based architecture implemented in `src/lib/stores/dashboard.ts`
+- dashboard now hydrates from the same `localStorage` key used by Angular, with mock data as fallback
+- derived stores provide:
+  - filtered applications
+  - metrics
+  - recent applications
+- dashboard includes:
+  - metrics cards
+  - reactive status filter
+  - recent applications panel
+  - summary/compare section
+- visual language intentionally matches the Angular app
 
 ### Angular Domain Layer
 
 Current model file:
 
-- `src/app/models/application.model.ts`
+- `apps/angular-app/job-application-tracker/src/app/models/application.model.ts`
 
 Implemented types/interfaces:
 
@@ -130,106 +152,20 @@ Current `JobApplication` shape includes:
 
 Status/modality values are kept in English internally to avoid encoding issues and keep code values stable.
 
-### Angular Service Layer
-
-Current service file:
-
-- `src/app/services/application.service.ts`
-
-Implemented:
-
-- richer mock dataset with six applications
-- `getAllApplications()`
-- `getApplicationById(id)`
-- `getFeaturedApplication()`
-
-The app still uses **mock data**, not HTTP/API yet.
-
-### Angular Applications Page
-
-Files:
-
-- `src/app/components/applications/applications.ts`
-- `src/app/components/applications/applications.html`
-- `src/app/components/applications/applications.css`
-
-Implemented:
-
-- hero/topbar and metrics cards
-- search + status/modality/sort filters with `ngModel`
-- filtered and sorted table view
-- status pill mapping and modality formatting in TypeScript
-- details navigation per row
-
-### Angular Register Page
-
-Files:
-
-- `src/app/components/register/register.ts`
-- `src/app/components/register/register.html`
-- `src/app/components/register/register.css`
-
-Implemented:
-
-- structured form layout based on the visual reference
-- live template-driven preview using `ngModel`
-- status/modality label formatting in TypeScript
-- sidebar/topbar integration through shared shell
-
-### Angular Details Page
-
-Files:
-
-- `src/app/components/details/details.ts`
-- `src/app/components/details/details.html`
-- `src/app/components/details/details.css`
-
-Implemented:
-
-- route-param based detail loading using `ActivatedRoute`
-- status summary card
-- contact/context card
-- timeline rendering from mock data
-- notes/summary sidebar cards
-- empty state when an application is not found
-
-### Visual Reference
-
-Static visual reference remains under:
-
-- `apps/angular-app/job-application-tracker/src/templates`
-
-Purpose:
-
-- visual inspiration only
-- not part of the real Angular feature flow
-- can still be served through Angular assets
-
-### Svelte Status
-
-Svelte dashboard is still planned but not scaffolded yet in the repo.
-
 ## Open Work
 
-Frontend next:
+Next technical priorities:
 
-- scaffold the Svelte dashboard app
-- reuse the same application domain shape in a small reactive dashboard
-- compare Angular pages vs Svelte dashboard architecture
-
-Backend later:
-
-- create Node/Express API
-- replace Angular mock data with `HttpClient`
-- model PostgreSQL schema
-- write SQL filters and analytics queries
-- build Java/Spring study API
+- polish success feedback after saving a new application
+- refine responsive behavior for the Angular table/details flow
+- decide whether to extract shared front-end seed data to reduce duplication
+- optionally add one extra Svelte comparison panel
 
 ## Known Constraints / Notes
 
 - The user prefers CSS instead of SCSS.
-- SSR/SSG is intentionally out of scope for now.
-- Mock data first, real API later.
+- SSR/SSG is intentionally out of scope.
+- The project should stay front-end only for now.
 - Visual reference must remain separate from production logic.
 - Internal code values should prefer ASCII-safe English identifiers when encoding becomes an issue.
 - The user wants future support for customizable per-company statuses, but this is a later feature, not current scope.

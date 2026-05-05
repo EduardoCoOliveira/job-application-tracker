@@ -2,49 +2,38 @@
 
 ## Goal
 
-Create the first Svelte artifact in the repository so the project demonstrates both frontend frameworks requested by the internship.
+Polish the front-end experience now that Angular and Svelte can share the same local data source.
 
 ## Exact Task
 
-Scaffold `apps/svelte-dashboard` and build a small dashboard view that reuses the same application concepts already implemented in Angular:
-
-- status counts
-- cards for recent applications
-- a simple reactive filter or store-based summary
+Improve one meaningful user-facing interaction in Angular and one consistency detail in Svelte.
 
 ## What To Do Next
 
-1. Create the `apps/svelte-dashboard` folder structure.
-2. Set up a minimal Svelte app or starter structure.
-3. Reuse the same domain vocabulary from Angular:
-   - applications
-   - statuses
-   - modalities
-4. Implement at least one Svelte `store` for application data or dashboard filters.
-5. Build one dashboard page with:
-   - overview metrics
-   - recent applications
-   - status breakdown
-6. Document how the Svelte dashboard compares architecturally with the Angular app.
+1. Add visible success feedback after saving a new Angular application.
+2. Decide whether the save flow should also redirect with a confirmation state.
+3. Review the Angular table on small screens and improve readability if needed.
+4. Optionally add one Svelte panel that reflects the latest locally-created application more explicitly.
+5. If duplication starts to hurt, extract the shared fallback mock data shape into a reusable front-end source file.
 
 ## Technical Focus
 
 This next step should highlight:
 
-- Svelte reactivity
-- stores
-- component composition
-- comparison between Angular and Svelte approaches
+- front-end state management
+- UX polish without backend dependency
+- consistency between Angular and Svelte
+- TypeScript domain reuse
 
 ## Rules
 
-- Keep the dashboard lightweight.
-- It can still use local mock data first.
-- Reuse the same product language and visual system where it makes sense.
-- Do not block on backend integration yet.
+- Keep the project front-end only.
+- Do not add Java, Spring, PostgreSQL or API work to the active scope.
+- Preserve the current visual quality while improving interaction quality.
 
 ## Files To Review Next Session
 
-- `apps/svelte-dashboard/...`
-- any new Svelte store files
-- any updated docs that compare Angular vs Svelte
+- `apps/angular-app/job-application-tracker/src/app/components/register/...`
+- `apps/angular-app/job-application-tracker/src/app/components/applications/...`
+- `apps/svelte-dashboard/src/lib/stores/dashboard.ts`
+- any shared mock data extraction if created
